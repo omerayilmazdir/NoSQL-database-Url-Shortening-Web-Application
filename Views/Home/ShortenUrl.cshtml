@@ -1,0 +1,27 @@
+﻿@model ShortenedUrl;
+@{
+    ViewData["Title"] = "Kısaltılmış link";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="width: 100%; padding: 30px; background-color: #e3f2fd;>
+
+
+    <div class="jumbotron">
+        <h1 class="display-4">İşleminiz tamam!</h1>
+        <p class="lead">Kısaltılmış Url bilgileriniz.</p>
+        <div>
+            <div>Kısa kod: @Model.ShortCode</div>
+            <span>Kısa Url: <a href="@Model.ShortUrl" target="_blank" onclick="updateItemCount(@Model.ShortUrl)">@Model.ShortUrl</a></span>
+            <div>Uzun Url: @Model.OriginalUrl</div>
+        </div>
+        <hr class="my-4">
+        <p>Bizi tercih ettiğiniz için teşekkürler.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="ShortUrl" role="button">Link kısaltıcıya dön</a>
+        </p>
+    </div>
+</div>
+
+

@@ -1,0 +1,304 @@
+﻿@model ShortenedUrl;
+@{
+    ViewData["Title"] = "Anasayfa";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>URL Kısaltıcı Servis</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/dist/vendor/bootstrap-4.5.3/css/bootstrap.min.css" type="text/css">
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <!-- Material design icons -->
+    <link rel="stylesheet" href="~/dist/icons/material-design-icons/css/mdi.min.css" type="text/css">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <!-- Latform styles -->
+    @*<link rel="stylesheet" href="~/dist/css/latform-style-12.min.css" type="text/css">*@
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+        .stretch-card > .card {
+            width: 100%;
+            min-width: 100%
+        }
+
+        body {
+            background-color: #f9f9fa;
+        }
+
+        .flex {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
+        }
+
+        media (max-width:991.98px) {
+            .padding
+
+        {
+            padding: 1.5rem
+        }
+
+        }
+
+        media (max-width:767.98px) {
+            .padding
+
+        {
+            padding: 1rem
+        }
+
+        }
+
+        .padding {
+            padding: 3rem
+        }
+
+        .card {
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            -ms-box-shadow: none
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #3da5f;
+            border-radius: 5px;
+        }
+
+            .card .card-block {
+                padding: 1.25rem;
+            }
+
+        h6 {
+            font-size: 16px !important;
+        }
+
+        .text-c-green {
+            color: #2ed8b6;
+        }
+
+        .m-l-10 {
+            margin-left: 10px;
+        }
+
+        .proj-progress-card .progress {
+            height: 6px;
+            overflow: visible;
+            margin-bottom: 10px;
+        }
+
+            .proj-progress-card .progress .progress-bar {
+                position: relative;
+            }
+
+        .progress .progress-bar {
+            height: 100%;
+            color: inherit;
+        }
+
+        .bg-c-red {
+            background: #FF5370;
+        }
+
+        .proj-progress-card .progress .progress-bar.bg-c-red:after {
+            border: 3px solid #FF5370;
+        }
+
+        .proj-progress-card .progress .progress-bar:after {
+            content: "";
+            background: #fff;
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+        }
+
+        .bg-c-blue {
+            background: #4099ff;
+        }
+
+        .proj-progress-card .progress .progress-bar.bg-c-blue:after {
+            border: 3px solid #4099ff;
+        }
+
+        .proj-progress-card .progress .progress-bar.bg-c-green:after {
+            border: 3px solid #2ed8b6;
+        }
+
+        .bg-c-green {
+            background: #2ed8b6;
+        }
+
+        .bg-c-yellow {
+            background: #FFB64D;
+        }
+
+        .proj-progress-card .progress .progress-bar.bg-c-yellow:after {
+            border: 3px solid #FFB64D;
+        }
+
+        .m-b-30 {
+            margin-bottom: 30px;
+        }
+
+        .text-c-red {
+            color: #FF5370;
+        }
+
+    </style>
+</head>
+<body style="background:#59c173;background:linear-gradient(90deg,#5d26c1,#a17fe0,#59c173);background-attachment:fixed">
+    <header>
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <a class="navbar-brand" style="font-weight: bold;" href="#">URL Kısaltıcı Servis</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+
+                        @{
+                            if (User?.Identity?.IsAuthenticated ?? false)
+                            {
+                                <li class="nav-item" style="width:1080px">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ShortUrl"><strong>Link kısalt</strong></a>
+                                </li>
+                                <li class="nav-item">
+                                    <strong>Hoş geldin: @User.Identity.Name</strong>
+                                    <a asp-controller="Account" asp-action="Logout" class="btn btn-danger btn-sm">Çıkış Yap</a>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><strong>Anasayfa</strong></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login"><strong>Giriş yap</strong></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="User" asp-action="Create"><strong>Kayıt ol</strong></a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <br />
+            <div class="text-center">
+                <h1 class="display-4">Hoş geldiniz!</h1>
+                <p>URL Kısaltıcı Servis: ASP.NET Core ve Mongo DB ile geliştirilmiş bir link kısaltma uygulaması.</p>
+            </div>
+
+            <body className='snippet-body'>
+                <div class="page-content page-container" id="page-content">
+                    <div class="padding">
+                        <div class="row container d-flex justify-content-center">
+
+                            <div class="col-xl-12" >
+                                <div class="card proj-progress-card" >
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-md-6">
+                                                <h6>Kısaltılan link sayısı</h6>
+                                                <h5 class="m-b-30 f-w-700">@ViewData["CountLink"]<span class="text-c-green m-l-10"></span></h5>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-c-red" style="width:@ViewData["CountLink"]%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-12">
+                                                <h6>En çok kısaltılan link</h6>
+                                                <h5 class="m-b-30 f-w-700">@Model.ShortCode <span class="text-c-red m-l-10"></span></h5>
+                                                <p>@Model.OriginalUrl</p>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-c-blue" style="width:@Model.ShortCode%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <h6>Kullanıcı sayısı</h6>
+                                                <h5 class="m-b-30 f-w-700">@ViewData["CountUser"]<span class="text-c-green m-l-10"></span></h5>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-c-green" style="width:@ViewData["CountUser"]%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-6">
+                                                <h6>En çok link kısaltan kullanıcı</h6>
+                                                <h5 class="m-b-30 f-w-700">@Model.CreatedBy<span class="text-c-green m-l-10"></span></h5>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-c-yellow" style="width:%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+                    <script type='text/javascript' src='#'></script>
+                    <script type='text/javascript' src='#'></script>
+                    <script type='text/javascript' src='#'></script>
+                    <script type='text/javascript'>#</script>
+                    <script type='text/javascript'>
+                        var myLink = document.querySelector('a[href="#"]');
+                        myLink.addEventListener('click', function (e) {
+                            e.preventDefault();
+                        });</script>
+
+                
+            </body>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Jquery -->
+    <script src="~/dist/vendor/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/dist/vendor/bootstrap-4.5.3/js/bootstrap.min.js"></script>
+    <!-- Latform scripts -->
+    <script src="~/dist/js/latform.min.js"></script>
+</body>
+</html>

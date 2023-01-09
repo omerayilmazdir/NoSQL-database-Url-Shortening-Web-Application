@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-wrapper">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="logo">
+                    <img src="~/dist/images/logo-black.png" alt="logo">
+                </div>
+                <div class="my-5 text-center">
+                    <h3 class="font-weight-bold mb-3">Giriş Yap</h3>
+                    <p class="text-muted">Url Kısaltıcı servise Giriş Yap!</p>
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                </div>
+                <form method="post">
+                    <div class="form-group">
+                        <div class="form-icon-wrapper">
+                            <input name="email" type="email" class="form-control" placeholder="Email" autofocus
+                                   required>
+                            <i class="form-icon-left mdi mdi-email"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-icon-wrapper">
+                            <input name="password" type="password" class="form-control" placeholder="Parola"
+                                   required>
+                            <i class="form-icon-left mdi mdi-lock"></i>
+                            <a href="#" class="form-icon-right password-show-hide"
+                               title="Parolayı göster">
+                                <i class="mdi mdi-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                <label class="custom-control-label" for="customCheck1">Beni hatırla</label>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary" type="submit">Giriş Yap</button>
+                    </div>
+                    <div class="text-center">
+                        Hesabınız yok mu?
+                        <a href="../User/Create">Ücretsiz bir hesap oluşturun!</a>.
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4 offset-md-4">
+                <div class="text-divider">ya da</div>
+            </div>
+        </div>
+        <div class="social-links justify-content-center">
+            <a href="#">
+                <i class="mdi mdi-google"></i>
+            </a>
+            <a href="#">
+                <i class="mdi mdi-facebook"></i>
+            </a>
+            <a href="#">
+                <i class="mdi mdi-twitter"></i>
+            </a>
+            <a href="#">
+                <i class="mdi mdi-github"></i>
+            </a>
+        </div>
+    </div>
+</div>

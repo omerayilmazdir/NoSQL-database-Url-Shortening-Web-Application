@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Link kısalt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hoş geldiniz!</h1>
+    <p>URL Kısaltıcı Servis: ASP.NET Core ve Mongo DB ile geliştirilmiş bir link kısaltma uygulaması.</p>
+</div>
+
+<div style="width: 100%; margin-top: 60px;">
+    <div style="width: 65%; margin-left: auto; margin-right: auto;">
+        <form id="form" style="text-align: center;" asp-action="ShortenUrl" method="post">
+            <input type="text"
+                   placeholder="URL giriniz..."
+                   style="width: 100%; border-radius: 5px; height: 45px;"
+                   name="longUrl" />
+             <br />
+             <p></p>
+            <span class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit" >Link kısalt</button>
+            </span>
+        </form>
+    </div>
+</div>
